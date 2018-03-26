@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 '''Controlling it all'''
 import view
-import persona
 import player
 
 
@@ -16,8 +15,9 @@ class Game:
                 self.view.terminate()
                 break
             if choice == 1:
-                player_one = player.Player(self.view.create_persona())
-
+                player_one = player.Player(self.view.ask_name(),self.view.ask_job())
+                print (player_one.name)
+                print (player_one.job)
 
 if __name__ == '__main__':
     main = Game()

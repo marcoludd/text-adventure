@@ -13,5 +13,8 @@ class View:
     def terminate(self):
         print('\nFarewell adventurer')
 
-    def create_persona(self):
-        name = input('\nType your name: ')
+    def ask_name(self):
+        return input('\nName: ')
+
+    def ask_job(self):
+        return input('\nJob: ')

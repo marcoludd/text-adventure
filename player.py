@@ -1,8 +1,16 @@
 #!/usr/bin/env python
 '''player class'''
-import character
+import persona
 
-class Player(Character):
-    def __init__ (self, name, strenght, speed, magic, job):
-        self.name = name
+class Player(persona.Persona):
+
+
+    def __init__(self, name, strenght, speed, magic, job):
+        super().__init__(name, strenght, speed, magic)
         self.job = job
+
+'''#tests
+player1 = Player('playerone',4,2,3,'warrior')
+print (player1.get_name())
+print (player1.get_strenght())
+'''

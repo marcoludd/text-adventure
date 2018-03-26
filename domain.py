@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 '''Controlling it all'''
 import view
-#import character
+import persona
 #import player
 
 
@@ -15,10 +15,11 @@ class Game:
             if choice == 0:
                 self.view.terminate()
                 break
-            print('escolheu')
-            
+            if choice == 1:
+                player = persona.Persona('josh', 5, 3, 2)
+                print(player.get_strenght())
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main = Game()
     main.start_game()

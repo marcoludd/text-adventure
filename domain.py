@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 '''Controlling it all'''
 import view
-import character
-import player
+#import character
+#import player
 
 
 class Game:
@@ -10,17 +10,15 @@ class Game:
         self.view = view.View()
 
     def start_game(self):
-
         while True:
             choice = self.view.start()
-            if choice == 2:
+            if choice == 0:
                 self.view.terminate()
-            break
-            if choice == 1:
-                # if opcao == criar personag
-                #player.create()
+                break
+            print('escolheu')
+            
 
 
-if __name__ == 'main':
+if __name__ == "__main__":
     main = Game()
     main.start_game()

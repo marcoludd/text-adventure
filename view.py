@@ -8,7 +8,10 @@ class View:
         print('1: Create Character \n'
               '2: Nothing \n'
               '0: Exit Game \n')
-        return int(input('Choice: '))
+        return int(input('\nChoice: '))
 
     def terminate(self):
-        print('Farewell adventurer')
+        print('\nFarewell adventurer')
+
+    def create_persona(self):
+        name = input('\nType your name: ')

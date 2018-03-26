@@ -5,7 +5,7 @@ import persona
 class Player(persona.Persona):
 
 
-    def __init__(self, name, strenght, speed, magic, job):
+    def __init__(self, name='default_char', strenght=1, speed=1, magic=0, job='soldier'):
         super().__init__(name, strenght, speed, magic)
         self.job = job
 

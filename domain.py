@@ -2,7 +2,7 @@
 '''Controlling it all'''
 import view
 import persona
-#import player
+import player
 
 
 class Game:
@@ -16,8 +16,7 @@ class Game:
                 self.view.terminate()
                 break
             if choice == 1:
-                player = persona.Persona('josh', 5, 3, 2)
-                print(player.get_strenght())
+                player_one = player.Player(self.view.create_persona())
 
 
 if __name__ == '__main__':

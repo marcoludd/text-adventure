@@ -3,25 +3,23 @@
 
 
 class View:
-    def start_menu(self):
+    def welcome(self):
         print('Welcome to the very basic text-adventure game\n')
+
+    def start_menu(self):
         print('1: Create Character \n'
               '0: Exit Game \n')
         return int(input('\nChoice: '))
     
-    def player_menu(self):
-        print('Your journey has started')
-        print('e Equipment \n'
-              's Stats \n'
-              'l Change Level\n')
-        return input('')
-
     def level_menu(self):
-        print('Description')
-        print('Monster')
-        print('Treasure')
-        print('Leave')
-        
+        print('Your journey has started')
+        print('1: Equipment || '
+              '2: Stats || '
+              '3: Level Description || '
+              '4: Change Level || '
+              '0: Exit Game')
+        return int(input('\nChoice: '))
+
     def terminate(self):
         print('\nFarewell adventurer')
 

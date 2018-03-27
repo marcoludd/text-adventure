@@ -13,10 +13,9 @@ class View:
     
     def level_menu(self):
         print('Your journey has started')
-        print('1: Equipment || '
-              '2: Stats || '
-              '3: Level Description || '
-              '4: Change Level || '
+        print('1: Stats || '
+              '2: Level Description || '
+              '3: Change Level || '
               '0: Exit Game')
         return int(input('\nChoice: '))
 
@@ -28,3 +27,7 @@ class View:
 
     def ask_job(self):
         return input('\nJob: ')
+
+    def player_stats(self, name, job):
+        print('Name: '+ name +'\n'
+              'Job:'+ job +'\n')

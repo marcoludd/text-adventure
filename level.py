@@ -1,17 +1,21 @@
 #!/usr/bin/env python
-'''Controlling it all'''
+'''creating cool levels'''
 import monster
+
 
 class Level:
     def __init__(self, monster=True, treasure=True):
-    self.monster = monster
-    self.treasure = treasure
+        if (monster):
+            self.create_monster()
+        self.treasure = treasure
+        self.ambience = "\nYou are in a dark and cool cave entrance\n"
 
     def create_monster(self):
-        monster_ = monster.Monster()
+        self.monster_ = monster.Monster()
 
     def create_treasure(self):
         pass
 
-    def create_description(self):
-        pass
+    def level_description(self):
+        description = self.ambience + 'You see a ' + self.monster_.name + '\n'
+        print (description)

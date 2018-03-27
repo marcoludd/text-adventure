@@ -5,7 +5,8 @@ import player
 import os
 import sys
 import level
-
+import item
+from random import randrange
 
 class Game:
     def __init__(self):
@@ -28,6 +29,7 @@ class Game:
 
     def starter_level(self):
         self.clear_screen()
+        self.view.start_journey()
         self.create_level()
         while True:
             self.level_menu_choice(self.view.level_menu())
@@ -38,10 +40,13 @@ class Game:
         elif choice == 1:
             self.player_stats()
         elif choice == 2:
-            self.level_.level_description()
+            self.view.print_message(self.level_.level_description())
+        elif choice == 4:
+            self.view.print_message(self.level_.item_description())
         elif choice == 3:
-            pass
-
+            #if (self.view.choose_level() == randrange(1,4)):
+            #    self.create_level()
+            self.create_level()
 
     def start_game(self):
         self.view.welcome()
@@ -56,7 +61,7 @@ class Game:
 
     def create_player(self):
         self.player_ = player.Player(self.view.ask_name(),self.view.ask_job())
-
+    
     def create_level(self):
         self.level_ = level.Level()
 

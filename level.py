@@ -1,21 +1,37 @@
 #!/usr/bin/env python
 '''creating cool levels'''
 import monster
+import item
+from random import randrange
+
 
 
 class Level:
-    def __init__(self, monster=True, treasure=True):
+    def __init__(self, monster=True, item=True):
         if (monster):
             self.create_monster()
-        self.treasure = treasure
-        self.ambience = "\nYou are in a dark and cool cave entrance\n"
+        if (item):
+            self.create_item()
+        self.ambience = self.levels[randrange(1, 5)]
 
     def create_monster(self):
         self.monster_ = monster.Monster()
 
-    def create_treasure(self):
-        pass
+    def create_item(self):
+        self.item_ = item.Item()
 
     def level_description(self):
-        description = self.ambience + 'You see a ' + self.monster_.name + '\n'
-        print (description)
+        description = 'Your are in ' + self.ambience + '\nYou see a ' + self.monster_.monster_type + '\n'
+        return description
+
+    def item_description(self):
+        item_description = '\nYou see a '+ self.item_.name + ' of ' + self.item_.bonus + '\n'
+        return item_description
+
+    levels = {1: 'a dark and damp cave',
+              2: 'a deep forest',
+              3: 'a secluded garden',
+              4: 'a scorching desert',
+              5: 'a haunted house'
+              }
+

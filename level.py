@@ -7,12 +7,12 @@ from random import randrange
 
 
 class Level:
-    def __init__(self, monster=True, item=True):
+    def __init__(self, ambience='nothing', monster=True, item=True):
         if (monster):
             self.create_monster()
         if (item):
             self.create_item()
-        self.ambience = self.levels[randrange(1, 5)]
+        self.ambience = ambience
 
     def create_monster(self):
         self.monster_ = monster.Monster()

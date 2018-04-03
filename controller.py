@@ -50,7 +50,10 @@ class Controller:
             self.exit_game()
         elif choice == 1:
             self.player_stats()
-            self.view.print_message(self.game.level_description())
+        elif choice == 2:
+            self.view.print_ambience(self.game.level_description())
+            self.view.print_monster(self.game.monster_description())
+            #self.view.print_message(self.game.level_description())
         elif choice == 4:
             self.view.print_message(self.game.item_description())
         elif choice == 3:

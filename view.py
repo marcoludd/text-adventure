@@ -13,7 +13,7 @@ class View:
         print('1: Create Character \n'
               '0: Exit Game \n')
         return int(input('\nChoice: '))
-    
+
     def level_menu(self):
         print('1: Stats || '
               '2: Level Description || '
@@ -41,4 +41,10 @@ class View:
 
     def player_stats(self, name, job):
         print('Name: '+ name +'\n'
-              'Job:'+ job +'\n')
+              'Job:'+ job + '\n')
+
+    def print_ambience(self, ambience):
+        print('\nYou are in a ' + ambience)
+
+    def print_monster(self, monster):
+        print('\nYou see a ' + monster)

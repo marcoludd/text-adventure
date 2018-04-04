@@ -4,7 +4,6 @@ import view
 import game
 import os
 import sys
-from random import randrange
 
 
 class Controller:
@@ -23,10 +22,10 @@ class Controller:
         self.view.terminate()
         sys.exit()
 
-    # Start game, by welcoming the player and showing the first menu  
+    # Start game, by welcoming the player and showing the first menu 
     def start_game(self):
         self.view.welcome()
-        self.start_menu_choice(self.view.start_menu())    
+        self.start_menu_choice(self.view.start_menu())  
 
     def start_menu_choice(self, choice):
         if choice == 0:
@@ -51,11 +50,9 @@ class Controller:
         elif choice == 1:
             self.player_stats()
         elif choice == 2:
-            self.view.print_ambience(self.game.level_description())
-            self.view.print_monster(self.game.monster_description())
-            #self.view.print_message(self.game.level_description())
+            self.level_description()
         elif choice == 4:
-            self.view.print_message(self.game.item_description())
+            self.item_description()
         elif choice == 3:
             self.create_level()
 
@@ -65,6 +62,13 @@ class Controller:
     def create_level(self):
         self.game.create_level()
 
+    def level_description(self):
+        self.view.print_ambience(self.game.level_description())
+        self.view.print_monster(self.game.monster_description())
+
+    def item_description(self):
+        self.view.print_item(self.game.item_description())
+ 
     # Return player stats
     def player_stats(self):
         self.view.player_stats(self.game.player_name(), self.game.player_job())

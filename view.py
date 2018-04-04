@@ -48,3 +48,6 @@ class View:
 
     def print_monster(self, monster):
         print('\nYou see a ' + monster)
+
+    def print_item(self, item):
+        print('You found a ' + item)

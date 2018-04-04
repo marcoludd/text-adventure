@@ -22,13 +22,4 @@ class Level:
     def create_item(self):
         self.item_ = item.Item()
 
-    def level_description(self):
-        description = 'Your are in ' + self.ambience + '\nYou see a ' + self.monster_.name + '\n'
-        return description
-
-    def item_description(self):
-        item_description = '\nYou see a '+ self.item_.name + ' of ' + self.item_.bonus + '\n'
-        return item_description
-
-
 

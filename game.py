@@ -10,7 +10,7 @@ class Game:
     items_dict = {1: 'sword',
                   2: 'shield',
                   3: 'mace',
-                  4: 'armor',
+                  4: 'plate armor',
                   5: 'helmet'
                   }
 
@@ -20,6 +20,7 @@ class Game:
                    4: 'golem',
                    5: 'gargoyle'
                   }
+
     bonus_dict = {1: 'strength',
                   2: 'speed',
                   3: 'magic'
@@ -40,8 +41,8 @@ class Game:
     def create_level(self):
         ambience = self.ambience_dict[randrange(1, 5)]
         monster = self.monster_dict[randrange(1, 5)]
-        item = self.items_dict[randrange(1, 5)]
-        self.level_ = level.Level(ambience, monster, item)
+        item_rand = self.items_dict[randrange(1, 5)]
+        self.level_ = level.Level(ambience, monster, item_rand)
 
     def level_description(self):
         return self.level_.ambience
@@ -50,7 +51,7 @@ class Game:
         return self.level_.monster
 
     def item_description(self):
-      pass
+        return self.level_.item
 
     def player_name(self):
         return self.player_.name

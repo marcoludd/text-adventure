@@ -45,6 +45,7 @@ class Controller:
     # The default choices
     # TODO change order
     def level_menu_choice(self, choice):
+        self.clear_screen()
         if choice == 0:
             self.exit_game()
         elif choice == 1:
@@ -55,6 +56,8 @@ class Controller:
             self.item_description()
         elif choice == 3:
             self.create_level()
+            self.clear_screen()
+            self.level_description()
 
     def create_player(self):
         self.game.create_player(self.view.ask_name(), self.view.ask_job())

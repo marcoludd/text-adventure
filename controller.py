@@ -59,6 +59,8 @@ class Controller:
             self.create_level()
             self.clear_screen()
             self.level_description()
+        elif choice == 5:
+            self.change_equips()
 
     def create_player(self):
         self.game.create_player(self.view.ask_name(), self.view.ask_job())
@@ -75,9 +77,20 @@ class Controller:
  
     # Return player stats
     def player_stats(self):
-        self.view.player_stats(self.game.player_name(), self.game.player_job())
+        name = self.game.player_name()
+        job = self.game.player_job()
+        strength = str(self.game.player_str())
+        speed = str(self.game.player_spd())
+        magic = str(self.game.player_mag())
+        self.view.player_stats(name, job, strength, speed, magic)
+        self.view.show_equip(self.game.equipped_item.name, self.game.equipped_item.bonus)
         for equipment in self.game.inventory_player:
             self.view.print_inventory(equipment.name, equipment.bonus)
+
+    def change_equips(self):
+        for i,v in enumerate(self.game.inventory_player):
+            self.view.print_inventory(i, v.name, v.bonus)
+        self.game.change_equips(self.view.choose_equips())
 
     def take_item(self):
         self.game.take_item()

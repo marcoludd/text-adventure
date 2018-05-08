@@ -37,6 +37,11 @@ class Game:
     def create_player(self, name, job):
         self.player_ = player.Player(name, job)
         self.inventory_player = list()
+        self.inventory_player.append(item.Item('amulet', 'magic'))
+        self.equipped_item = self.inventory_player[0]
+
+    def change_equips(self, number):
+        self.equipped_item = self.inventory_player[number]
 
     # Later, use as parameters (self, ambience, monster, item)
     def create_level(self):
@@ -48,14 +53,9 @@ class Game:
         self.level_ = level.Level(ambience, monster, self.item_level)
 
     def take_item(self):
-        self.inventory_player.append(self.item_level)
-
-    def add_inventory(self, Item):
-        self.inventory_player.append(Item)
-
-    def check_inventory(self):
-        for f in self.inventory_player:
-            print (f.name)
+        if (self.item_level.name != 'nothing'):
+            self.inventory_player.append(self.item_level)
+            self.item_level = item.Item('nothing', 'nothing')
 
     def level_description(self):
         return self.level_.ambience
@@ -72,5 +72,11 @@ class Game:
     def player_job(self):
         return self.player_.job
 
+    def player_str(self):
+        return self.player_.strength
 
+    def player_spd(self):
+        return self.player_.speed
 
+    def player_mag(self):
+        return self.player_.magic

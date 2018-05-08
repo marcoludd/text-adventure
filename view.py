@@ -39,9 +39,12 @@ class View:
                '1: North || 2: South || 3: East || 4: West')
         return int(input('\nChoice: '))
 
-    def player_stats(self, name, job):
-        print('Name: '+ name +'\n'
-              'Job:'+ job + '\n')
+    def player_stats(self, name, job, strength, speed, magic):
+        print('Name: '+ name + '\n'
+              'Job:'+ job + '\n'
+              'Strength:' + strength + '\n'
+              'Speed:' + speed + '\n'
+              'Magic:' + magic + '\n')
 
     def print_ambience(self, ambience):
         print('\nYou are in a ' + ambience)
@@ -53,5 +56,13 @@ class View:
         print('You found a ' + item)
 
     def print_inventory(self, name, bonus):
-        print('You have a ' + name + 'of ' + bonus + '\n')
+        print('You have a ' + name + ' of ' + bonus + '\n')
 
+    def print_equips(self, number, name, bonus):
+        print('Number:' + number + 'Name:' + name + 'Bonus:' + bonus + '\n')
+
+    def choose_equips(self):
+        return int(input('Choose your equipment: '))
+
+    def show_equip(self, name, bonus):
+        print('You are using the ' + name + ' of ' + bonus + '\n')

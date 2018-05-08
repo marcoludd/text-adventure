@@ -54,6 +54,7 @@ class Controller:
             self.level_description()
         elif choice == 4:
             self.item_description()
+            self.take_item()
         elif choice == 3:
             self.create_level()
             self.clear_screen()
@@ -75,7 +76,10 @@ class Controller:
     # Return player stats
     def player_stats(self):
         self.view.player_stats(self.game.player_name(), self.game.player_job())
+        self.game.check_inventory()
 
+    def take_item(self):
+        self.game.take_item()
 
 if __name__ == '__main__':
     main = Controller()

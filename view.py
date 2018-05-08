@@ -51,3 +51,6 @@ class View:
 
     def print_item(self, item):
         print('You found a ' + item)
+
+    def print_inventory(self, name, bonus)
+        print('You have a' + name + 'of ' + bonus + '\n')

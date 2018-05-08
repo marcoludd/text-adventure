@@ -88,8 +88,8 @@ class Controller:
             self.view.print_inventory(equipment.name, equipment.bonus)
 
     def change_equips(self):
-        for i,v in enumerate(self.game.inventory_player):
-            self.view.print_inventory(i, v.name, v.bonus)
+        for i, equipment in enumerate(self.game.inventory_player):
+            self.view.print_equips(str(i), equipment.name, equipment.bonus)
         self.game.change_equips(self.view.choose_equips())
 
     def take_item(self):

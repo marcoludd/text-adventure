@@ -19,6 +19,7 @@ class View:
               '2: Level Description || '
               '3: Change Level || '
               '4: Explore room || '
+              '5: Change equipment ||'
               '0: Exit Game')
         return int(input('\nChoice: '))
 
@@ -59,7 +60,7 @@ class View:
         print('You have a ' + name + ' of ' + bonus + '\n')
 
     def print_equips(self, number, name, bonus):
-        print('Number:' + number + 'Name:' + name + 'Bonus:' + bonus + '\n')
+        print(number + ' ' + name + ' of ' + bonus + '\n')
 
     def choose_equips(self):
         return int(input('Choose your equipment: '))

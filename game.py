@@ -38,11 +38,19 @@ class Game:
         self.player_ = player.Player(name, job)
         self.inventory_player = list()
         self.inventory_player.append(item.Item('amulet', 'magic'))
-        self.equipped_item = self.inventory_player[0]
+        self.change_equips(0)
+
 
     def change_equips(self, number):
         self.equipped_item = self.inventory_player[number]
-
+        bonus = self.equipped_item.bonus
+        if (bonus == 'strength'):
+            self.player_.strength += 1
+        elif (bonus == 'speed'):
+            self.player_.speed += 1
+        elif (bonus == 'magic'):
+            self.player_.magic += 1
+        
     # Later, use as parameters (self, ambience, monster, item)
     def create_level(self):
         ambience = self.ambience_dict[randrange(1, 5)]

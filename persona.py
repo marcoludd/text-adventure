@@ -14,5 +14,14 @@ class Persona:
         self.hp = (2*(self.strength+self.speed))*(1 + self.magic)
 
     def str_mod(self, number):
-        self.hp += number
+        self.strength += number
+
+    def spd_mod(self, number):
+        self.speed += number
+
+    def mag_mod(self, number):
+        self.magic += number
+    
+    def check_hp(self):
+        return self.hp
 

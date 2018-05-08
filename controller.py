@@ -12,7 +12,7 @@ class Controller:
         self.game = game.Game()
         self.clear_screen()
 
-    # Clear terminal - works on windows or linux
+    # Clear terminal - works on windows and linux
     def clear_screen(self):
         os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -71,7 +71,8 @@ class Controller:
     def level_description(self):
         self.view.print_ambience(self.game.level_description())
         self.view.print_monster(self.game.monster_description())
-
+        self.view.print_monster_hp(self.game.monster_hp())
+        
     def item_description(self):
         self.view.print_item(self.game.item_description())
  
@@ -79,10 +80,11 @@ class Controller:
     def player_stats(self):
         name = self.game.player_name()
         job = self.game.player_job()
+        hp = str(self.game.player_hp())
         strength = str(self.game.player_str())
         speed = str(self.game.player_spd())
         magic = str(self.game.player_mag())
-        self.view.player_stats(name, job, strength, speed, magic)
+        self.view.player_stats(name, job, hp, strength, speed, magic)
         self.view.show_equip(self.game.equipped_item.name, self.game.equipped_item.bonus)
         for equipment in self.game.inventory_player:
             self.view.print_inventory(equipment.name, equipment.bonus)

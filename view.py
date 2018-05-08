@@ -40,9 +40,10 @@ class View:
                '1: North || 2: South || 3: East || 4: West')
         return int(input('\nChoice: '))
 
-    def player_stats(self, name, job, strength, speed, magic):
+    def player_stats(self, name, job, hp, strength, speed, magic):
         print('Name: '+ name + '\n'
               'Job:'+ job + '\n'
+              'HP:'+ hp + '\n'
               'Strength:' + strength + '\n'
               'Speed:' + speed + '\n'
               'Magic:' + magic + '\n')
@@ -51,7 +52,10 @@ class View:
         print('\nYou are in a ' + ambience)
 
     def print_monster(self, monster):
-        print('\nYou see a ' + monster)
+        print('\nYou see a ' + monster + '\n')
+
+    def print_monster_hp(self, hp):
+        print('\nIt has ' + hp + 'Hit Points')
 
     def print_item(self, item):
         print('You found a ' + item)

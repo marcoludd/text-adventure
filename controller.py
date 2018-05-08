@@ -76,7 +76,8 @@ class Controller:
     # Return player stats
     def player_stats(self):
         self.view.player_stats(self.game.player_name(), self.game.player_job())
-        self.game.check_inventory()
+        for equipment in self.game.inventory_player:
+            self.view.print_inventory(equipment.name, equipment.bonus)
 
     def take_item(self):
         self.game.take_item()

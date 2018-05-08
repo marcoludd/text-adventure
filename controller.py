@@ -4,7 +4,7 @@ import view
 import game
 import os
 import sys
-
+import combat
 
 class Controller:
     def __init__(self):

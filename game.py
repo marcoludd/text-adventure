@@ -99,8 +99,11 @@ class Game:
         return self.player_.hp
   
     def attack_monster()
-        level_.monster.hp -= self.player_attack()
-        if (monster_alive())
+        level_.monster.hp -= self.player_.attack()
+        if (level_.monster.alive):
             if (choice([True, False])):
-                player_damage(level_.monster.attack())
+                player_.damage(level_.monster.attack())
+                if (!player_.alive)
+                    self.controller.exit_game()
+        player_.
     

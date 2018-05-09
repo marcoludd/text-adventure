@@ -97,3 +97,10 @@ class Game:
     
     def player_hp(self):
         return self.player_.hp
+  
+    def attack_monster()
+        level_.monster.hp -= self.player_attack()
+        if (monster_alive())
+            if (choice([True, False])):
+                player_damage(level_.monster.attack())
+    

@@ -20,6 +20,7 @@ class View:
               '3: Change Level || '
               '4: Explore room || '
               '5: Change equipment ||'
+              '6: Attack monster ||'
               '0: Exit Game')
         return int(input('\nChoice: '))
 
@@ -71,3 +72,15 @@ class View:
 
     def show_equip(self, name, bonus):
         print('You are using the ' + name + ' of ' + bonus + '\n')
+
+    def combat_attack(self, player_attack, monster_name, monster_hp):
+        print("You inflicted " + player_attack +
+              " points of damage in the " + monster_name +
+              " and it's down to " + monster_hp + " Hit Points")
+
+    def combat_damage(self, monster_attack, monster_name, player_hp):
+        print("\nThe " + monster_name + " inflicted you with " + monster_attack +
+              " points of damage, and your life is down to " + player_hp + " Hit Points")
+
+    def lost_combat(self):
+        print("\nYou have died. May the Gods have mercy on your soul\n")

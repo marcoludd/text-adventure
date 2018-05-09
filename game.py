@@ -56,12 +56,11 @@ class Game:
     # Later, use as parameters (self, ambience, monster, item)
     def create_level(self):
         ambience = self.ambience_dict[randrange(1, 5)]
-        #monster = self.monster_dict[randrange(1, 5)]
+        monster = self.monster_dict[randrange(1, 5)]
         item_rand = self.items_dict[randrange(1, 5)]
         bonus_item = self.bonus_dict[randrange(1, 3)]
-        monster_bool = choice([True, False])
         self.item_level = item.Item(item_rand, bonus_item)
-        self.level_ = level.Level(ambience, monster_bool, self.item_level)
+        self.level_ = level.Level(ambience, monster)
 
     def take_item(self):
         if (not self.level_.monster.alive):
@@ -98,13 +97,31 @@ class Game:
     
     def player_hp(self):
         return self.player_.hp
-  
-    def attack_monster()
-        level_.monster.hp -= self.player_.attack()
-        if (level_.monster.alive):
+    
+    def player_attack(self):
+        return self.player_.attack()
+    
+    def monster_attack(self):
+        return self.level_.monster.attack()
+
+    def player_damage(self, number):
+        return self.player_.damage(number)
+    
+    def monster_damage(self, number):
+        return self.level_.monster.damage(number)
+
+    def player_alive(self):
+        return self.player_.is_alive()
+
+    def monster_alive(self):
+        return self.level_.monster.is_alive()
+
+    def attack_monster(self):
+        self.monster_damage(randrange(1, self.player_attack()))
+        if (self.monster_alive()):
             if (choice([True, False])):
-                player_.damage(level_.monster.attack())
-                if (not player_.alive)
-                    self.controller.exit_game()
-        else
-            player_.hp_mod()
+                self.player_damage(randrange(1, self.monster_attack()))
+                if (not self.player_.is_alive()):
+                    return 3
+        else:
+            self.player_.hp_mod()

@@ -4,7 +4,7 @@ import view
 import game
 import os
 import sys
-import combat
+from time import sleep
 
 class Controller:
     def __init__(self):
@@ -25,7 +25,7 @@ class Controller:
     # Start game, by welcoming the player and showing the first menu 
     def start_game(self):
         self.view.welcome()
-        self.start_menu_choice(self.view.start_menu())  
+        self.start_menu_choice(self.view.start_menu()) 
 
     def start_menu_choice(self, choice):
         if choice == 0:
@@ -64,9 +64,20 @@ class Controller:
         elif choice == 6:
             self.attack_monster()
 
-    def attack_monster():
-        self.game.attack_monster()
-            
+    def attack_monster(self):
+        attack = self.game.attack_monster()
+        player_attack = str(self.game.player_attack())
+        monster_name = str(self.game.level_.monster.name)
+        monster_hp = str(self.game.level_.monster.hp)
+        player_hp = str(self.game.player_hp())
+        monster_attack = str(self.game.monster_attack())
+        self.view.combat_attack(player_attack, monster_name, monster_hp)
+        self.view.combat_damage(monster_attack, monster_name, player_hp)
+        if (attack == 3):
+            self.view.lost_combat()
+            sleep(10)
+            self.exit_game()
+
     def create_player(self):
         self.game.create_player(self.view.ask_name(), self.view.ask_job())
 
@@ -76,11 +87,11 @@ class Controller:
     def level_description(self):
         self.view.print_ambience(self.game.level_description())
         self.view.print_monster(self.game.monster_description())
-        self.view.print_monster_hp(self.game.monster_hp())
-        
+        self.view.print_monster_hp(str(self.game.monster_hp()))
+
     def item_description(self):
         self.view.print_item(self.game.item_description())
- 
+
     # Return player stats
     def player_stats(self):
         name = self.game.player_name()
@@ -89,8 +100,10 @@ class Controller:
         strength = str(self.game.player_str())
         speed = str(self.game.player_spd())
         magic = str(self.game.player_mag())
+        item_name = self.game.equipped_item.name
+        item_bonus = self.game.equipped_item.bonus
         self.view.player_stats(name, job, hp, strength, speed, magic)
-        self.view.show_equip(self.game.equipped_item.name, self.game.equipped_item.bonus)
+        self.view.show_equip(item_name, item_bonus)
         for equipment in self.game.inventory_player:
             self.view.print_inventory(equipment.name, equipment.bonus)
 
@@ -101,6 +114,7 @@ class Controller:
 
     def take_item(self):
         self.game.take_item()
+
 
 if __name__ == '__main__':
     main = Controller()

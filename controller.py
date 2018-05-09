@@ -61,7 +61,12 @@ class Controller:
             self.level_description()
         elif choice == 5:
             self.change_equips()
+        elif choice == 6:
+            self.attack_monster()
 
+    def attack_monster():
+        self.game.attack_monster()
+            
     def create_player(self):
         self.game.create_player(self.view.ask_name(), self.view.ask_job())
 

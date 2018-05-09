@@ -64,9 +64,10 @@ class Game:
         self.level_ = level.Level(ambience, monster_bool, self.item_level)
 
     def take_item(self):
-        if (self.item_level.name != 'nothing'):
-            self.inventory_player.append(self.item_level)
-            self.item_level = item.Item('nothing', 'nothing')
+        if (not self.level_.monster.alive):
+            if (self.item_level.name != 'nothing'):
+                self.inventory_player.append(self.item_level)
+                self.item_level = item.Item('nothing', 'nothing')
 
     def level_description(self):
         return self.level_.ambience

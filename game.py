@@ -103,7 +103,7 @@ class Game:
         if (level_.monster.alive):
             if (choice([True, False])):
                 player_.damage(level_.monster.attack())
-                if (!player_.alive)
+                if (not player_.alive)
                     self.controller.exit_game()
         else
             player_.hp_mod()

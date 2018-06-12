@@ -22,6 +22,16 @@ class Controller:
         self.view.terminate()
         sys.exit()
 
+    def lost_game(self):
+        self.view.lost_combat()
+        sleep(10)
+        self.exit_game()
+
+    def finish_game(self):
+        self.view.finish_game()
+        sleep(10)
+        self.exit_game()
+
     # Start game, by welcoming the player and showing the first menu 
     def start_game(self):
         self.view.welcome()
@@ -56,6 +66,8 @@ class Controller:
             self.item_description()
             self.take_item()
         elif choice == 3:
+            if (self.game.win >= 5):
+                self.finish_game()
             self.create_level()
             self.clear_screen()
             self.level_description()
@@ -63,20 +75,28 @@ class Controller:
             self.change_equips()
         elif choice == 6:
             self.attack_monster()
+        elif choice == 9:
+            self.view.finish()
 
     def attack_monster(self):
-        attack = self.game.attack_monster()
-        player_attack = str(self.game.player_attack())
-        monster_name = str(self.game.level_.monster.name)
-        monster_hp = str(self.game.level_.monster.hp)
-        player_hp = str(self.game.player_hp())
-        monster_attack = str(self.game.monster_attack())
-        self.view.combat_attack(player_attack, monster_name, monster_hp)
-        self.view.combat_damage(monster_attack, monster_name, player_hp)
-        if (attack == 3):
-            self.view.lost_combat()
-            sleep(10)
-            self.exit_game()
+        if (self.game.monster_alive()):
+            attack = self.game.attack_monster()
+            if (attack == 4):
+                if (self.game.win >= 5):
+                    self.finish_game()
+                self.view.monster_defeated(self.game.monster_name())
+            else: 
+                player_attack = str(self.game.last_attack)
+                monster_name = str(self.game.monster_name())
+                monster_hp = str(self.game.monster_hp())
+                player_hp = str(self.game.player_hp())
+                monster_attack = str(self.game.last_hit)
+                self.view.combat_attack(player_attack, monster_name, monster_hp)
+                self.view.combat_damage(monster_attack, monster_name, player_hp)
+                if (attack == 3):
+                    self.lost_game()
+        else:
+            self.view.monster_defeated(self.game.monster_name())
 
     def create_player(self):
         self.game.create_player(self.view.ask_name(), self.view.ask_job())

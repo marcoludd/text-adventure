@@ -7,7 +7,9 @@ from random import choice
 
 class Game:
 
-
+    wins = 0
+    last_attack = 0
+    last_hit = 0
     items_dict = {1: 'sword',
                   2: 'shield',
                   3: 'mace',
@@ -44,16 +46,23 @@ class Game:
 
     def change_equips(self, number):
         self.equipped_item = self.inventory_player[number]
-        bonus = self.equipped_item.bonus
-        if (bonus == 'strength'):
-            self.player_.str_mod(1)
-        elif (bonus == 'speed'):
-            self.player_.spd_mod(1)
-        elif (bonus == 'magic'):
-            self.player_.mag_mod(1)
+        # Test if an item was already used
+        if (self.equipped_item.used == False):
+            bonus = self.equipped_item.bonus
+            if (bonus == 'strength'):
+                self.player_.str_mod(1)
+            elif (bonus == 'speed'):
+                self.player_.spd_mod(1)
+            elif (bonus == 'magic'):
+                self.player_.mag_mod(1)
+            self.equipped_item.used = True
         self.player_.hp_mod()
-        
-    # Later, use as parameters (self, ambience, monster, item)
+
+
+    '''
+        LEVEL
+    '''
+
     def create_level(self):
         ambience = self.ambience_dict[randrange(1, 5)]
         monster = self.monster_dict[randrange(1, 5)]
@@ -67,9 +76,18 @@ class Game:
             if (self.item_level.name != 'nothing'):
                 self.inventory_player.append(self.item_level)
                 self.item_level = item.Item('nothing', 'nothing')
+                
+
+
 
     def level_description(self):
         return self.level_.ambience
+
+    '''
+        MONSTER
+    '''
+    def monster_attack(self):
+        return self.level_.monster.attack()
 
     def monster_description(self):
         return self.level_.monster.name
@@ -77,8 +95,25 @@ class Game:
     def monster_hp(self):
         return self.level_.monster.hp
 
+    def monster_name(self):
+        return self.level_.monster.name
+
+    def monster_hp(self):
+        return self.level_.monster.hp
+
+    def monster_damage(self, number):
+        return self.level_.monster.damage(number)
+
+    def monster_alive(self):
+        return self.level_.monster.alive 
+
+
+    # ITEM
+
     def item_description(self):
         return self.item_level.name
+
+    # PLAYER
 
     def player_name(self):
         return self.player_.name
@@ -94,34 +129,37 @@ class Game:
 
     def player_mag(self):
         return self.player_.magic
-    
+
     def player_hp(self):
         return self.player_.hp
     
     def player_attack(self):
         return self.player_.attack()
     
-    def monster_attack(self):
-        return self.level_.monster.attack()
-
     def player_damage(self, number):
         return self.player_.damage(number)
     
-    def monster_damage(self, number):
-        return self.level_.monster.damage(number)
+
 
     def player_alive(self):
         return self.player_.is_alive()
 
-    def monster_alive(self):
-        return self.level_.monster.is_alive()
+
 
     def attack_monster(self):
-        self.monster_damage(randrange(1, self.player_attack()))
+        self.last_attack = 0
+        self.last_hit = 0
+        self.last_attack = randrange(1, self.player_attack())
+        self.monster_damage(self.last_attack)
         if (self.monster_alive()):
             if (choice([True, False])):
-                self.player_damage(randrange(1, self.monster_attack()))
+                self.last_hit = randrange(1, self.monster_attack())
+                self.player_damage(self.last_hit)
                 if (not self.player_.is_alive()):
                     return 3
+            else:
+                self.last_hit = 0
         else:
+            self.wins += 1
             self.player_.hp_mod()
+            return 4

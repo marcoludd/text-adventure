@@ -56,7 +56,7 @@ class View:
         print('\nYou see a ' + monster + '\n')
 
     def print_monster_hp(self, hp):
-        print('\nIt has ' + hp + 'Hit Points')
+        print('\nIt has ' + hp + ' Hit Points')
 
     def print_item(self, item):
         print('You found a ' + item)
@@ -76,11 +76,18 @@ class View:
     def combat_attack(self, player_attack, monster_name, monster_hp):
         print("You inflicted " + player_attack +
               " points of damage in the " + monster_name +
-              " and it's down to " + monster_hp + " Hit Points")
+              " and it's down to " + monster_hp + " Hit Points\n")
 
     def combat_damage(self, monster_attack, monster_name, player_hp):
         print("\nThe " + monster_name + " inflicted you with " + monster_attack +
-              " points of damage, and your life is down to " + player_hp + " Hit Points")
+              " points of damage, and your life is down to " + player_hp + " Hit Points\n")
 
     def lost_combat(self):
         print("\nYou have died. May the Gods have mercy on your soul\n")
+
+    def finish_game(self):
+        print("\nCongratulations! You have found the way out of the dungeon!")
+        print("\nMay the Gods guide your path\n")
+
+    def monster_defeated(self, monster_name):
+      print('The ' + monster_name + " is defeated\n")

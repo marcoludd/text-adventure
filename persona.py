@@ -8,14 +8,14 @@ class Persona:
         self.strength = strength
         self.speed = speed
         self.magic = magic
-        self.hp = 10 + (2 * (self.strength + self.speed)) * (1 + self.magic)
-        self.alive = True 
+        self.hp = 5 + ((self.strength + self.speed)) * (1 + self.magic)
+        self.alive = True
 
     def is_alive(self):
         return self.alive
 
     def hp_mod(self):
-        self.hp = (2 * (self.strength + self.speed)) * (1 + self.magic)
+        self.hp = 5 + ((self.strength + self.speed)) * (1 + self.magic)
 
     def str_mod(self, number):
         self.strength += number

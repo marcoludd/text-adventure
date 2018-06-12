@@ -6,3 +6,4 @@ class Item:
     def __init__(self, name, bonus):
         self.name = name
         self.bonus = bonus
+        self.used = False

@@ -38,9 +38,9 @@ class Game:
     '''
     Singleton
     '''
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls):
         if not hasattr(cls, '_instance'):
-            cls._instance = super(Game, cls).__new__(cls, *args, **kwargs)
+            cls._instance = super(Game, cls).__new__(cls)
             return cls._instance
 
     def create_player(self, name, job):

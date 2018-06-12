@@ -35,7 +35,13 @@ class Game:
                      4: 'a scorching desert',
                      5: 'a haunted house'
                      }
-
+    '''
+    Singleton
+    '''
+    def __new__(cls, *args, **kwargs):
+        if not hasattr(cls, '_instance'):
+            cls._instance = super(Game, cls).__new__(cls, *args, **kwargs)
+            return cls._instance
 
     def create_player(self, name, job):
         self.player_ = player.Player(name, job)
@@ -149,16 +155,14 @@ class Game:
     def attack_monster(self):
         self.last_attack = 0
         self.last_hit = 0
-        self.last_attack = randrange(1, self.player_attack())
+        self.last_attack = randrange(0, self.player_attack())
         self.monster_damage(self.last_attack)
         if (self.monster_alive()):
             if (choice([True, False])):
-                self.last_hit = randrange(1, self.monster_attack())
+                self.last_hit = randrange(0, self.monster_attack())
                 self.player_damage(self.last_hit)
                 if (not self.player_.is_alive()):
                     return 3
-            else:
-                self.last_hit = 0
         else:
             self.wins += 1
             self.player_.hp_mod()

@@ -10,12 +10,19 @@ class Game:
     wins = 0
     last_attack = 0
     last_hit = 0
+
+
     items_dict = {1: 'sword',
                   2: 'shield',
                   3: 'mace',
                   4: 'plate armor',
                   5: 'helmet'
                   }
+
+    item_store = {1: 'primeiro', 
+                  2: 'segundo',
+                  3: 'terceiro',
+                  4: 'quarto'}
 
     monster_dict = {1: 'goblin',
                    2: 'skeleton',
@@ -43,12 +50,28 @@ class Game:
             cls._instance = super(Game, cls).__new__(cls)
             return cls._instance
 
+    
+    def create_store(self, name):
+        self.store_ = Store()
+
     def create_player(self, name, job):
         self.player_ = player.Player(name, job)
         self.inventory_player = list()
         self.inventory_player.append(item.Item('amulet', 'magic'))
         self.change_equips(0)
+        self.wallet = 0
+        
+    def player_victory(self):
+        return self.wins
 
+    def gain_money(self, ammount):
+        self.player_.wallet += ammount
+
+    def lose_money(self, ammount):
+        self.player_.wallet -= ammount
+
+    def player_wallet(self):
+        return self.player.wallet
 
     def change_equips(self, number):
         self.equipped_item = self.inventory_player[number]
@@ -165,5 +188,11 @@ class Game:
                     return 3
         else:
             self.wins += 1
+            self.drop_coins(self.player_hp)
             self.player_.hp_mod()
+
             return 4
+
+    def drop_coins(ammount):
+        self.player_.wallet += int(10/(0.01 * ammount))
+

@@ -41,13 +41,14 @@ class View:
                '1: North || 2: South || 3: East || 4: West')
         return int(input('\nChoice: '))
 
-    def player_stats(self, name, job, hp, strength, speed, magic):
+    def player_stats(self, name, job, hp, strength, speed, magic, coins):
         print('Name: '+ name + '\n'
               'Job:'+ job + '\n'
               'HP:'+ hp + '\n'
               'Strength:' + strength + '\n'
               'Speed:' + speed + '\n'
-              'Magic:' + magic + '\n')
+              'Magic:' + magic + '\n'
+              'Coins:' + coins + '\n')
 
     def print_ambience(self, ambience):
         print('\nYou are in a ' + ambience)
@@ -90,4 +91,10 @@ class View:
         print("\nMay the Gods guide your path\n")
 
     def monster_defeated(self, monster_name):
-      print('The ' + monster_name + " is defeated\n")
+        print('The ' + monster_name + " is defeated\n")
+
+    def store_closed(self):
+        print('\nDefeat the monster first!\n')
+
+    def store_open(self):
+        print('\nWelcome! Take a look at these items...')

@@ -66,7 +66,7 @@ class Controller:
             self.item_description()
             self.take_item()
         elif choice == 3:
-            if (self.game.win >= 5):
+            if (self.game.player_victory() >= 5):
                 self.finish_game()
             self.create_level()
             self.clear_screen()
@@ -75,14 +75,22 @@ class Controller:
             self.change_equips()
         elif choice == 6:
             self.attack_monster()
+        elif choice == 7:
+            self.store()
         elif choice == 9:
             self.view.finish()
+
+    def store(self):
+        if (self.game.monster_alive()):
+            self.view.store_closed()
+        else:
+            self.view.store_open()
 
     def attack_monster(self):
         if (self.game.monster_alive()):
             attack = self.game.attack_monster()
             if (attack == 4):
-                if (self.game.win >= 5):
+                if (self.game.player_victory() >= 5):
                     self.finish_game()
                 self.view.monster_defeated(self.game.monster_name())
             else: 
@@ -120,9 +128,10 @@ class Controller:
         strength = str(self.game.player_str())
         speed = str(self.game.player_spd())
         magic = str(self.game.player_mag())
+        coins = str(self.game.player_wallet())
         item_name = self.game.equipped_item.name
         item_bonus = self.game.equipped_item.bonus
-        self.view.player_stats(name, job, hp, strength, speed, magic)
+        self.view.player_stats(name, job, hp, strength, speed, magic, coins)
         self.view.show_equip(item_name, item_bonus)
         for equipment in self.game.inventory_player:
             self.view.print_inventory(equipment.name, equipment.bonus)

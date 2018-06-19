@@ -84,7 +84,25 @@ class Controller:
         if (self.game.monster_alive()):
             self.view.store_closed()
         else:
+            self.clear_screen()
             self.view.store_open()
+            close = 0
+            while (close == 0):
+                self.show_store()
+                choice = self.view.choice_store()
+                if (choice == 10):
+                    close = 1
+                else:
+                    buy = self.game.buy_item(choice)
+                    if (buy == 0):
+                        self.view.print_message('Thanks for buying')
+                    elif (buy == 1):
+                        self.view.print_message('Insufficient funds!')
+    
+    def show_store(self):
+        for i, equipment in enumerate(self.game.store_items()):
+            self.view.show_store(str(i), str(equipment.name), str(equipment.bonus), str(equipment.price))
+
 
     def attack_monster(self):
         if (self.game.monster_alive()):
@@ -140,11 +158,6 @@ class Controller:
         for i, equipment in enumerate(self.game.inventory_player):
             self.view.print_equips(str(i), equipment.name, equipment.bonus)
         self.game.change_equips(self.view.choose_equips())
-
-    def show_store(self):
-        for i, equipment in enumerate(self.game.store_items()):
-            self.view.print_store(str(i), equipment.name, equipment.bonus)
-               
 
     def take_item(self):
         self.game.take_item()

@@ -53,7 +53,7 @@ class Game:
 
     def __init__(self):
         self.store_ = store.Store()
-        self.fill_store()
+        self.fill_store(10)
     
     def create_player(self, name, job):
         self.player_ = player.Player(name, job)
@@ -74,6 +74,17 @@ class Game:
     def player_wallet(self):
         return self.wallet
 
+    def buy_item(self, number):
+        price = self.store_.store_inventory[number].price
+        if (self.player_wallet() > price):
+            self.lose_money(price)
+            self.inventory_player.append(store_.store_inventory[number])
+            del self.inventory_player[number]
+            return 0
+        else:
+            return 1
+
+
     def change_equips(self, number):
         self.equipped_item = self.inventory_player[number]
         # Test if an item was already used
@@ -92,8 +103,16 @@ class Game:
         Store
     '''
 
-    def fill_store(self):
-        pass
+    def fill_store(self, quantity):
+        counter = quantity
+        while(counter > 0):
+            item_rand = self.items_dict[randrange(1, 5)]
+            bonus_item = self.bonus_dict[randrange(1, 3)]
+            price_item = randrange(100, 1000)
+            self.item_store = item.Item(item_rand, bonus_item, price_item)
+            self.item_store.store = True
+            self.store_.store_inventory.append(self.item_store)
+            counter -= 1
 
     def store_items(self):
         return self.store_.store_inventory

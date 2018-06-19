@@ -1,6 +1,7 @@
 import player
 import level
 import item
+import store
 from random import randrange
 from random import choice
 
@@ -50,10 +51,10 @@ class Game:
             cls._instance = super(Game, cls).__new__(cls)
             return cls._instance
 
+    def __init__(self):
+        self.store_ = store.Store()
+        self.fill_store()
     
-    def create_store(self, name):
-        self.store_ = Store()
-
     def create_player(self, name, job):
         self.player_ = player.Player(name, job)
         self.inventory_player = list()
@@ -65,13 +66,13 @@ class Game:
         return self.wins
 
     def gain_money(self, ammount):
-        self.player_.wallet += ammount
+        self.wallet += ammount
 
     def lose_money(self, ammount):
-        self.player_.wallet -= ammount
+        self.wallet -= ammount
 
     def player_wallet(self):
-        return self.player.wallet
+        return self.wallet
 
     def change_equips(self, number):
         self.equipped_item = self.inventory_player[number]
@@ -87,6 +88,12 @@ class Game:
             self.equipped_item.used = True
         self.player_.hp_mod()
 
+    '''
+        Store
+    '''
+
+    def fill_store(self):
+        pass
 
     '''
         LEVEL
@@ -99,15 +106,6 @@ class Game:
         bonus_item = self.bonus_dict[randrange(1, 3)]
         self.item_level = item.Item(item_rand, bonus_item)
         self.level_ = level.Level(ambience, monster)
-
-    def take_item(self):
-        if (not self.level_.monster.alive):
-            if (self.item_level.name != 'nothing'):
-                self.inventory_player.append(self.item_level)
-                self.item_level = item.Item('nothing', 'nothing')
-                
-
-
 
     def level_description(self):
         return self.level_.ambience
@@ -127,9 +125,6 @@ class Game:
     def monster_name(self):
         return self.level_.monster.name
 
-    def monster_hp(self):
-        return self.level_.monster.hp
-
     def monster_damage(self, number):
         return self.level_.monster.damage(number)
 
@@ -138,7 +133,12 @@ class Game:
 
 
     # ITEM
-
+    def take_item(self):
+        if (not self.level_.monster.alive):
+            if (self.item_level.name != 'nothing'):
+                self.inventory_player.append(self.item_level)
+                self.item_level = item.Item('nothing', 'nothing')
+               
     def item_description(self):
         return self.item_level.name
 
@@ -168,13 +168,11 @@ class Game:
     def player_damage(self, number):
         return self.player_.damage(number)
     
-
-
     def player_alive(self):
         return self.player_.is_alive()
-
-
-
+    '''
+    Attack Monster
+    ''' 
     def attack_monster(self):
         self.last_attack = 0
         self.last_hit = 0
@@ -188,11 +186,11 @@ class Game:
                     return 3
         else:
             self.wins += 1
-            self.drop_coins(self.player_hp)
+            self.drop_coins(self.player_hp())
             self.player_.hp_mod()
 
             return 4
 
-    def drop_coins(ammount):
-        self.player_.wallet += int(10/(0.01 * ammount))
+    def drop_coins(self, ammount):
+        self.wallet += int(10/(0.01 * ammount))
 

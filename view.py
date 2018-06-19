@@ -21,6 +21,7 @@ class View:
               '4: Explore room || '
               '5: Change equipment ||'
               '6: Attack monster ||'
+              '7: Visit store ||'
               '0: Exit Game')
         return int(input('\nChoice: '))
 

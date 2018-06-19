@@ -78,7 +78,7 @@ class Controller:
         elif choice == 7:
             self.store()
         elif choice == 9:
-            self.view.finish()
+            self.view.finish_game()
 
     def store(self):
         if (self.game.monster_alive()):

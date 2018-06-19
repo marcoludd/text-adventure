@@ -78,7 +78,7 @@ class Game:
         price = self.store_.store_inventory[number].price
         if (self.player_wallet() > price):
             self.lose_money(price)
-            self.inventory_player.append(store_.store_inventory[number])
+            self.inventory_player.append(self.store_.store_inventory[number])
             del self.inventory_player[number]
             return 0
         else:
@@ -90,12 +90,15 @@ class Game:
         # Test if an item was already used
         if (self.equipped_item.used == False):
             bonus = self.equipped_item.bonus
+            unit = 1
+            if (self.equipped_item.store):
+                unit = 2
             if (bonus == 'strength'):
-                self.player_.str_mod(1)
+                self.player_.str_mod(unit)
             elif (bonus == 'speed'):
-                self.player_.spd_mod(1)
+                self.player_.spd_mod(unit)
             elif (bonus == 'magic'):
-                self.player_.mag_mod(1)
+                self.player_.mag_mod(unit)
             self.equipped_item.used = True
         self.player_.hp_mod()
 

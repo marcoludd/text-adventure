@@ -7,3 +7,4 @@ class Item:
         self.name = name
         self.bonus = bonus
         self.used = False
+        self.store = False

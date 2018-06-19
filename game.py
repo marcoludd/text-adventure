@@ -20,10 +20,10 @@ class Game:
                   5: 'helmet'
                   }
 
-    item_store = {1: 'primeiro', 
-                  2: 'segundo',
-                  3: 'terceiro',
-                  4: 'quarto'}
+    item_store = {1: 'spear', 
+                  2: 'halberd',
+                  3: 'glaive',
+                  4: 'scythe'}
 
     monster_dict = {1: 'goblin',
                    2: 'skeleton',
@@ -94,6 +94,9 @@ class Game:
 
     def fill_store(self):
         pass
+
+    def store_items(self):
+        return self.store_.store_inventory
 
     '''
         LEVEL

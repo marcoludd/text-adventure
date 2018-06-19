@@ -141,6 +141,11 @@ class Controller:
             self.view.print_equips(str(i), equipment.name, equipment.bonus)
         self.game.change_equips(self.view.choose_equips())
 
+    def show_store(self):
+        for i, equipment in enumerate(self.game.store_items()):
+            self.view.print_store(str(i), equipment.name, equipment.bonus)
+               
+
     def take_item(self):
         self.game.take_item()
 

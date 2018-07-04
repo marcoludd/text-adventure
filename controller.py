@@ -78,13 +78,31 @@ class Controller:
         elif choice == 7:
             self.store()
         elif choice == 9:
-            self.view.finish()
+            self.view.finish_game()
 
     def store(self):
         if (self.game.monster_alive()):
             self.view.store_closed()
         else:
+            self.clear_screen()
             self.view.store_open()
+            close = 0
+            while (close == 0):
+                self.show_store()
+                choice = self.view.choice_store()
+                if (choice == 10):
+                    close = 1
+                else:
+                    buy = self.game.buy_item(choice)
+                    if (buy == 0):
+                        self.view.print_message('Thanks for buying')
+                    elif (buy == 1):
+                        self.view.print_message('Insufficient funds!')
+    
+    def show_store(self):
+        for i, equipment in enumerate(self.game.store_items()):
+            self.view.show_store(str(i), str(equipment.name), str(equipment.bonus), str(equipment.price))
+
 
     def attack_monster(self):
         if (self.game.monster_alive()):

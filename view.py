@@ -21,6 +21,7 @@ class View:
               '4: Explore room || '
               '5: Change equipment ||'
               '6: Attack monster ||'
+              '7: Visit store ||'
               '0: Exit Game')
         return int(input('\nChoice: '))
 
@@ -35,11 +36,6 @@ class View:
 
     def print_message(self, message):
         print (message)
-
-    def choose_level(self):
-        print ('Choose your destiny:\n'
-               '1: North || 2: South || 3: East || 4: West')
-        return int(input('\nChoice: '))
 
     def player_stats(self, name, job, hp, strength, speed, magic, coins):
         print('Name: '+ name + '\n'
@@ -97,4 +93,10 @@ class View:
         print('\nDefeat the monster first!\n')
 
     def store_open(self):
-        print('\nWelcome! Take a look at these items...')
+        print('\nWelcome! Take a look at these items...\n')
+
+    def show_store(self, number, name, bonus, price):
+        print(number + ' ' + name + ' of ' + bonus + ' price: ' + price + 'coins \n')
+
+    def choice_store(self):
+        return int(input('\nExit: 10 \nChoose your item: \n '))
